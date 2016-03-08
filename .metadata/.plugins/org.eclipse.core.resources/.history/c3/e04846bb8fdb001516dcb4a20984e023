@@ -1,0 +1,384 @@
+package MainPackage;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+public class APIdata {
+	// Hashmap
+	 public static HashMap keyval = new HashMap();
+	 public static HashMap headers = new HashMap();
+	 public static HashMap responseData = new HashMap();
+	 public static HashMap responseDtype = new HashMap();
+	 public static String httpmethod;
+	 public static String url;
+	 public static List<HashMap> data = new  ArrayList<HashMap>() ;
+	 
+	 public static void clearmaps()
+	 {
+		 keyval.clear();
+		 responseData.clear();
+		 responseDtype.clear();
+		 headers.clear();
+	 }
+	 
+	 public static List<HashMap> loginAPIdata()
+	 {	
+		 try{
+		 clearmaps();
+		 keyval.put("username", "obscuro");
+		 keyval.put("password", "reset123$");
+		 responseDtype.put("token", "Text");
+		 responseDtype.put("username", "Text");
+		 responseData.put("id", "1");
+		 responseData.put("email", "obscuro@gofynd.com");
+		 //headers.put("token", APItests.jobject.getString("token"));
+		 data.add(headers);
+		 data.add(keyval);
+		 data.add(responseDtype);
+		 data.add(responseData);		 		 
+		 
+		 }
+		 catch(Exception e)
+		 {
+			 	ReportLogger.WriteLog(e.toString());
+				ReportLogger.WriteLog("Terminating execution...");
+		 }
+		 return data;
+		 
+	 }
+	 
+	 public static List<HashMap> discountsAPIdata()
+	 {
+		 try{
+		 clearmaps();
+		 headers.put("Authorization", APItests.essentialHeaders.getString("token"));
+		 responseDtype.put("end_date", "Text");
+		 data.add(headers);
+		 data.add(keyval);
+		 data.add(responseDtype);
+		 data.add(responseData);	
+		 }
+		 catch(Exception e)
+		 {
+			ReportLogger.WriteLog(e.toString());
+			ReportLogger.WriteLog("Terminating execution...");
+		 }
+		 return data;
+	 }
+	 
+	 public static List<HashMap> editDiscountsAPIdata()
+	 {
+		 try{
+		 clearmaps();
+		 keyval.put("discount_type","Absolute");
+		 keyval.put("name","MumRun");
+		 keyval.put("is_active","FALSE");
+		 keyval.put("end_date","2016-01-27T04:53:00+05:30");
+		 keyval.put("start_date","2016-01-06T04:53:00+05:30");
+		 keyval.put("created_on","2016-01-06T11:30:14Z");
+		 keyval.put("action_url","http://cc.gofynd.com/marketing/view_discounts");
+		 keyval.put("threshold","500");
+		 keyval.put("value","250");
+		 keyval.put("id","2");
+		 keyval.put("min_cart_value","1000");
+		 keyval.put("max_discount","1000");
+		 keyval.put("uses","10000");
+		 keyval.put("brand_id","9");
+		 keyval.put("brandName","Puma");
+		 headers.put("Authorization", APItests.essentialHeaders.getString("token"));
+		 responseDtype.put("end_date", "Text");
+		 data.add(headers);
+		 data.add(keyval);
+		 data.add(responseDtype);
+		 data.add(responseData);	
+		 }
+		 catch(Exception e)
+		 {
+			ReportLogger.WriteLog(e.toString());
+			ReportLogger.WriteLog("Terminating execution...");
+		 }
+		 return data;
+	 }
+	 
+	 public static List<HashMap> StoreListByBrandAPIdata()
+	 {
+		 try{
+		 clearmaps();
+		 /*keyval.put("name","R City, Ghatkopar");
+		 keyval.put("code","BLR01");
+		 keyval.put("store_contact1","022 67755816");
+		 keyval.put("store_contact2","022 67755816");
+		 keyval.put("store_email","beinghumanrcity2@mandhana.com");
+		 keyval.put("short_name","Foum");
+		 keyval.put("address","R City Mall, Ghatkopar West, Mumbai,");
+		 keyval.put("location_city","Bangalore");
+		 keyval.put("area_code","400086");
+		 keyval.put("longitude","72.9165333");
+		 keyval.put("latitude","19.0993548");
+		 keyval.put("manager_name","Being Human");
+		 keyval.put("manager_contact","67755816");
+		 keyval.put("mall_name","R City");
+		 keyval.put("mall_area","Ghatkopar");
+		 keyval.put("location_type","mall");
+		 keyval.put("cc_enabled","DISABLED");
+		 keyval.put("brand_id","1");*/
+		 responseDtype.put("code", "Number");
+		 //responseDtype.put("created_on", "Date");
+		 headers.put("Authorization",(String) ("Token "+APItests.essentialHeaders.getString("token").toString().trim()));
+		 data.add(headers);
+		 data.add(keyval);
+		 data.add(responseDtype);
+		 data.add(responseData);
+		 
+		 }
+		 catch(Exception e)
+		 {
+			ReportLogger.WriteLog(e.toString());
+			ReportLogger.WriteLog("Terminating execution...");
+		 }
+		 return data;
+		 
+	 }
+	 
+	 public static List<HashMap> edit_discount_1_data ()
+	 {
+	  try{
+	    clearmaps();
+	    headers.put("Authorization", APItests.essentialHeaders.getString("token"));
+	     data.add(headers);
+	    data.add(keyval);
+	    data.add(responseDtype);
+	    data.add(responseData); 
+	    }
+	    catch(Exception e)
+	    {
+	    ReportLogger.WriteLog(e.toString());
+	    ReportLogger.WriteLog("Terminating execution...");
+	    }
+	    return data;
+	 }
+	 public static List<HashMap> avis_Login_1_data ()
+	 {
+	  try{
+	    clearmaps();
+	    headers.put("Authorization", APItests.essentialHeaders.getString("token"));
+	     data.add(headers);
+	    data.add(keyval);
+	    data.add(responseDtype);
+	    data.add(responseData); 
+	    }
+	    catch(Exception e)
+	    {
+	    ReportLogger.WriteLog(e.toString());
+	    ReportLogger.WriteLog("Terminating execution...");
+	    }
+	    return data;
+	 }
+	 public static List<HashMap> get_category_hierarchy_1_data ()
+	 {
+	  try{
+	    clearmaps();
+	    headers.put("Authorization", APItests.essentialHeaders.getString("token"));
+	     data.add(headers);
+	    data.add(keyval);
+	    data.add(responseDtype);
+	    data.add(responseData); 
+	    }
+	    catch(Exception e)
+	    {
+	    ReportLogger.WriteLog(e.toString());
+	    ReportLogger.WriteLog("Terminating execution...");
+	    }
+	    return data;
+	 }
+	 public static List<HashMap> upload_brand_images_1_data ()
+	 {
+	  try{
+	    clearmaps();
+	    headers.put("Authorization", APItests.essentialHeaders.getString("token"));
+	     data.add(headers);
+	    data.add(keyval);
+	    data.add(responseDtype);
+	    data.add(responseData); 
+	    }
+	    catch(Exception e)
+	    {
+	    ReportLogger.WriteLog(e.toString());
+	    ReportLogger.WriteLog("Terminating execution...");
+	    }
+	    return data;
+	 }
+	 public static List<HashMap> orders_1_data ()
+	 {
+	  try{
+	    clearmaps();
+	    headers.put("Authorization", APItests.essentialHeaders.getString("token"));
+	     data.add(headers);
+	    data.add(keyval);
+	    data.add(responseDtype);
+	    data.add(responseData); 
+	    }
+	    catch(Exception e)
+	    {
+	    ReportLogger.WriteLog(e.toString());
+	    ReportLogger.WriteLog("Terminating execution...");
+	    }
+	    return data;
+	 }
+	 public static List<HashMap> fyndr_1_data ()
+	 {
+	  try{
+	    clearmaps();
+	    headers.put("Authorization", APItests.essentialHeaders.getString("token"));
+	     data.add(headers);
+	    data.add(keyval);
+	    data.add(responseDtype);
+	    data.add(responseData); 
+	    }
+	    catch(Exception e)
+	    {
+	    ReportLogger.WriteLog(e.toString());
+	    ReportLogger.WriteLog("Terminating execution...");
+	    }
+	    return data;
+	 }
+	 public static List<HashMap> get_collection_items_1_data ()
+	 {
+	  try{
+	    clearmaps();
+	    headers.put("Authorization", APItests.essentialHeaders.getString("token"));
+	     data.add(headers);
+	    data.add(keyval);
+	    data.add(responseDtype);
+	    data.add(responseData); 
+	    }
+	    catch(Exception e)
+	    {
+	    ReportLogger.WriteLog(e.toString());
+	    ReportLogger.WriteLog("Terminating execution...");
+	    }
+	    return data;
+	 }
+	 public static List<HashMap> search_items_1_data ()
+	 {
+	  try{
+	    clearmaps();
+	    headers.put("Authorization", APItests.essentialHeaders.getString("token"));
+	     data.add(headers);
+	    data.add(keyval);
+	    data.add(responseDtype);
+	    data.add(responseData); 
+	    }
+	    catch(Exception e)
+	    {
+	    ReportLogger.WriteLog(e.toString());
+	    ReportLogger.WriteLog("Terminating execution...");
+	    }
+	    return data;
+	 }
+	 public static List<HashMap> store_list_by_brand_1_data ()
+	 {
+	  try{
+	    clearmaps();
+	    headers.put("Authorization", APItests.essentialHeaders.getString("token"));
+	     data.add(headers);
+	    data.add(keyval);
+	    data.add(responseDtype);
+	    data.add(responseData); 
+	    }
+	    catch(Exception e)
+	    {
+	    ReportLogger.WriteLog(e.toString());
+	    ReportLogger.WriteLog("Terminating execution...");
+	    }
+	    return data;
+	 }
+	 public static List<HashMap> get_next_item_1_data ()
+	 {
+	  try{
+	    clearmaps();
+	    headers.put("Authorization", APItests.essentialHeaders.getString("token"));
+	     data.add(headers);
+	    data.add(keyval);
+	    data.add(responseDtype);
+	    data.add(responseData); 
+	    }
+	    catch(Exception e)
+	    {
+	    ReportLogger.WriteLog(e.toString());
+	    ReportLogger.WriteLog("Terminating execution...");
+	    }
+	    return data;
+	 }
+	 public static List<HashMap> offers_1_data ()
+	 {
+	  try{
+	    clearmaps();
+	    headers.put("Authorization", APItests.essentialHeaders.getString("token"));
+	     data.add(headers);
+	    data.add(keyval);
+	    data.add(responseDtype);
+	    data.add(responseData); 
+	    }
+	    catch(Exception e)
+	    {
+	    ReportLogger.WriteLog(e.toString());
+	    ReportLogger.WriteLog("Terminating execution...");
+	    }
+	    return data;
+	 }
+	 public static List<HashMap> get_companies_1_data ()
+	 {
+	  try{
+	    clearmaps();
+	    headers.put("Authorization", APItests.essentialHeaders.getString("token"));
+	     data.add(headers);
+	    data.add(keyval);
+	    data.add(responseDtype);
+	    data.add(responseData); 
+	    }
+	    catch(Exception e)
+	    {
+	    ReportLogger.WriteLog(e.toString());
+	    ReportLogger.WriteLog("Terminating execution...");
+	    }
+	    return data;
+	 }
+	 public static List<HashMap> login_1_data ()
+	 {
+	  try{
+	    clearmaps();
+	    headers.put("Authorization", APItests.essentialHeaders.getString("token"));
+	     data.add(headers);
+	    data.add(keyval);
+	    data.add(responseDtype);
+	    data.add(responseData); 
+	    }
+	    catch(Exception e)
+	    {
+	    ReportLogger.WriteLog(e.toString());
+	    ReportLogger.WriteLog("Terminating execution...");
+	    }
+	    return data;
+	 }
+	 public static List<HashMap> fyndr_geography_1_data ()
+	 {
+	  try{
+	    clearmaps();
+	    headers.put("Authorization", APItests.essentialHeaders.getString("token"));
+	     data.add(headers);
+	    data.add(keyval);
+	    data.add(responseDtype);
+	    data.add(responseData); 
+	    }
+	    catch(Exception e)
+	    {
+	    ReportLogger.WriteLog(e.toString());
+	    ReportLogger.WriteLog("Terminating execution...");
+	    }
+	    return data;
+	 }
+
+
+}

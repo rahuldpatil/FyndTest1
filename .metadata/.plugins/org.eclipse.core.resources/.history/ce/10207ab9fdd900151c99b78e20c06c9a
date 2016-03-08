@@ -1,0 +1,328 @@
+package MainPackage;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.http.Header;
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.params.HttpParams;
+import org.apache.http.util.EntityUtils;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+
+public class CommonActions {
+	
+	public static String json;
+	public static JSONObject jobject;
+	public static HttpResponse response;
+	
+	public static JSONObject execute(String url, String methodname,Map<String, Object> apiheaders, Map<String, Object> keyvalue)
+	{		
+		try{	
+			List<NameValuePair> nameValuePairs;
+			
+			Header [] headers;
+			ReportLogger.WriteLog("Transaction Started for API "+url+" ");
+			HttpClient httpclient = new DefaultHttpClient();
+			
+			if(methodname.compareTo("GET")==0){
+			HttpGet httpget = new HttpGet(url);
+			nameValuePairs = new ArrayList<NameValuePair>();
+			HttpParams params = httpget.getParams();
+									
+			for(String key : keyvalue.keySet()){
+				//nameValuePairs.add(new BasicNameValuePair(key.toString(),keyvalue.get(key).toString()));
+				params.setParameter(key.toString(),keyvalue.get(key).toString());
+			}
+			if(apiheaders.isEmpty()==false){
+				httpget.setHeader("Authorization", apiheaders.get("token").toString());
+				if(apiheaders.size()>1){
+			for(String key : apiheaders.keySet()){
+				httpget.addHeader(key.toString(),apiheaders.get(key).toString());
+			}}}
+						
+			// Execute HTTP Post Request
+			httpget.setParams(params);
+			System.out.print(httpget.getParams().toString());
+			
+			response = httpclient.execute(httpget);
+			headers = response.getAllHeaders();
+			for (Header header : headers) {
+				System.out.println("Key : " + header.getName() 
+				      + " ,Value : " + header.getValue());
+			}
+			
+			
+			}
+			
+			
+			else //if(methodname.compareTo("POST")==0)
+				{
+			HttpPost httppost = new HttpPost(url);
+			nameValuePairs = new ArrayList<NameValuePair>();
+			for(String key : keyvalue.keySet()){
+				nameValuePairs.add(new BasicNameValuePair(key.toString(),keyvalue.get(key).toString()));
+			}
+			httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+			if(apiheaders.isEmpty()==false){
+				httppost.setHeader("token", apiheaders.get("token").toString());
+				if(apiheaders.size()>1){
+			for(String key : apiheaders.keySet()){
+				httppost.addHeader(key.toString(),keyvalue.get(key).toString().trim());
+			}}}
+			
+			// Execute HTTP Post Request
+			response = httpclient.execute(httppost);
+			headers = response.getAllHeaders();
+			for (Header header : headers) {
+				System.out.println("Key : " + header.getName() 
+				      + " ,Value : " + header.getValue());
+			}
+			
+			}
+			
+			String ret = EntityUtils.toString(response.getEntity());
+			System.out.println(response.getStatusLine());
+			if (response.getStatusLine().toString().trim().compareTo("HTTP/1.1 200 OK")!=0)
+			{
+				ReportLogger.WriteLog("Status code for API "+url+" is " +response.getStatusLine().toString());
+				ReportLogger.WriteLog("Terminating the execution for test case "+Thread.currentThread().getStackTrace()[2].getMethodName());
+			}
+			else{
+			//System.out.println(ret);
+			//json= ret;
+			ReportLogger.WriteLog("Status code for API "+url+" is " +response.getStatusLine().toString());	
+			ReportLogger.WriteLog(response.getStatusLine().getReasonPhrase());
+			jobject = new JSONObject(ret);
+			
+			
+			}
+			
+			}
+			catch(Exception e){
+				
+				ReportLogger.WriteLog(e.toString());
+				ReportLogger.WriteLog("Terminating execution...");
+			
+			}		
+		return jobject;
+		
+	}
+	
+	
+	public static void countKeysresponse(JSONObject dataObj)
+	{
+		int counter=1;
+		Iterator<?> keys = dataObj.keys();
+		while(keys.hasNext())
+		
+		
+	}
+	
+	public static void validateAPIresponsedatatype(JSONObject dataObj,  Map<String, Object> keyType)
+	{
+		String datatype;
+		try
+		{
+			for(String key : keyType.keySet()){				
+				switch(keyType.get(key).toString())
+				{
+					case "Text":
+						chekstring(dataObj,key);
+					break;
+					
+					case "Number":
+						cheknumber(dataObj,key);
+						break;
+						
+					case "Date":
+						chekdate(dataObj,key);
+						break;
+						
+					
+					default:
+						break;
+				}
+			}		    
+			//String token = dataObj.getString("token");
+	        //System.out.println(token);
+		}
+		catch(Exception e){
+			ReportLogger.WriteLog(e.toString());
+			ReportLogger.WriteLog("Terminating execution...");
+			}
+	}
+
+
+public static void ValidateResponseData(JSONObject dataObj,  Map<String, Object> datakeys)
+{	
+	for(String key : datakeys.keySet())
+	{
+		try {
+			ReportLogger.WriteLog("Checking response data for key: "+key+" with expected");
+			if(dataObj.getString(key).compareTo((String) datakeys.get(key))==0)
+			{
+				
+				ReportLogger.WriteLog("Expected : "+dataObj.getString(key).toString()+" , System: "+datakeys.get(key).toString());
+				ReportLogger.WriteLog("Passes : Data matches");
+			}
+			else
+			{
+				ReportLogger.WriteLog("Expected : "+dataObj.getString(key).toString()+" , System: "+datakeys.get(key).toString());
+				ReportLogger.WriteLog("Failed : Data not matching");
+			}
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			ReportLogger.WriteLog(e.toString());
+			ReportLogger.WriteLog("Terminating execution...");
+		}}}
+
+	public static void chekstring(JSONObject dataObj,String data)
+	{
+		try
+		{
+		Object resultobj = new Object();
+		ReportLogger.WriteLog("Checking Type of data for key: "+data+" if it is String");
+		//ReportLogger.WriteLog("Value is : "+dataObj.getString(data));
+		
+		String x = (String)dataObj.toString();
+		resultobj=checkdata(data,x);
+		ReportLogger.WriteLog("Value is : "+(String)(resultobj.toString()));
+		
+		if(resultobj instanceof String){		
+		ReportLogger.WriteLog("Check Passes");}
+		else{ReportLogger.WriteLog("Check Failed");}}
+		catch(Exception e){ReportLogger.WriteLog(e.toString());
+		ReportLogger.WriteLog("Terminating execution...");}
+		
+	}
+	
+	private static Object checkdata(String key, String jstring) {
+		Object resultobj= new Object();
+		try{			
+		
+		if(jstring.trim().startsWith("[")){
+			JSONArray arrey= new JSONArray(jstring);
+			for(int n = 0; n < arrey.length(); n++)
+			{
+				String x = (String)arrey.get(n).toString();			   			   
+				resultobj = checkdata (key,x);
+			    
+			}
+		}
+		if(jstring.trim().startsWith("{")){
+		JSONObject thisobject = new JSONObject(jstring);
+		Iterator<?> mainkeys = thisobject.keys();
+		while(mainkeys.hasNext() ) {
+		    String thiskey = (String)mainkeys.next();
+		    if (thisobject.get(thiskey) instanceof JSONObject || thisobject.get(thiskey) instanceof JSONArray) {
+		    	String s=(String) thisobject.get(thiskey).toString();
+		    	resultobj = checkdata(key, s);
+		    }
+		    
+		    else{
+		    	if(key.compareTo(thiskey)==0){
+		    	System.out.println(thisobject.get(thiskey));
+		    	resultobj=thisobject.get(thiskey);	}
+		    	
+		    	}
+		    }
+		}
+		
+		}
+		catch(Exception e){
+			
+			System.out.println(e);
+			
+		}
+		return resultobj;
+		
+
+	}
+	
+	public static void cheknumber(JSONObject dataObj,String data)
+	{
+		try
+		{
+		Object resultobj = new Object();
+		ReportLogger.WriteLog("Checking Type of data for key: "+data+" if it is a number");
+		//ReportLogger.WriteLog("Value is : "+dataObj.getString(data));
+		
+		String x = (String)dataObj.toString();
+		resultobj=checkdata(data,x);
+		ReportLogger.WriteLog("Value is : "+(String)(resultobj.toString()));
+		
+		
+		try  
+		  {  
+		    double d = Double.parseDouble((String) resultobj);  
+		    ReportLogger.WriteLog("Check Passes");
+		  }  
+		  catch(NumberFormatException e)  
+		  {  
+			  ReportLogger.WriteLog("Check Failed");
+			  ReportLogger.WriteLog(e.toString());
+			  ReportLogger.WriteLog("Terminating execution...");
+		  }  	
+		
+	
+	}
+			catch(Exception e){
+			
+				ReportLogger.WriteLog(e.toString());
+			
+		}
+	}
+
+
+	public static void chekdate(JSONObject dataObj,String data)
+	{
+		try
+		{
+		Object resultobj = new Object();
+		ReportLogger.WriteLog("Checking Type of data for key: "+data+" if it is a number");
+		//ReportLogger.WriteLog("Value is : "+dataObj.getString(data));
+		
+		String x = (String)dataObj.toString();
+		resultobj=checkdata(data,x);
+		ReportLogger.WriteLog("Value is : "+(String)(resultobj.toString()));
+		
+		
+		try  
+		  {  
+		    double d = Double.parseDouble((String) resultobj);  
+		    ReportLogger.WriteLog("Check Passes");
+		  }  
+		  catch(NumberFormatException e)  
+		  {  
+			  ReportLogger.WriteLog("Check Failed");
+			  ReportLogger.WriteLog(e.toString());
+			  ReportLogger.WriteLog("Terminating execution...");
+		  }  	
+		
+	
+	}
+			catch(Exception e){
+			
+				ReportLogger.WriteLog(e.toString());
+			
+		}
+	}
+	
+
+}

@@ -1,0 +1,76 @@
+package MainPackage;
+
+import org.json.JSONObject;
+
+public class APItests extends CommonActions {
+	
+	
+	public static JSONObject essentialHeaders ;
+	public static void saperator()
+	{
+		ReportLogger.WriteLog("*************************************************************************");
+	}
+	//Validate Login and response data
+	public static void LoginAPICase1()
+	{
+		saperator();
+		APIdata.loginAPIdata();
+		jobject =execute("http://obscuro-staging.gofynd.com/api/login","POST",APIdata.headers, APIdata.keyval);
+		essentialHeaders=jobject;
+		countKeysresponse(jobject);
+		countHeaders();
+		
+		//validateAPIresponsedatatype(jobject,APIdata.responseDtype);
+		//ValidateResponseData(jobject,APIdata.responseData);
+		saperator();
+					
+	}
+	
+	public static void DiscountsAPICase1()
+	{
+		//Positive flow where all data is correct
+		saperator();
+		jobject =execute("http://obscuro-staging.gofynd.com/api/discounts/?page_no=1&page_size=9","GET",APIdata.discountsAPIdata().get(0), APIdata.discountsAPIdata().get(1));
+		countKeysresponse(jobject);
+		//System.out.println(jobject);
+		//validateAPIresponsedatatype(jobject,APIdata.responseDtype);
+		//ValidateResponseData(jobject,APIdata.responseData);
+		countHeaders();
+		saperator();
+	}
+	
+	public static void DiscountsAPICase2()
+	{
+		saperator();
+		jobject =execute("http://obscuro-staging.gofynd.com/api/discounts/?page_no=1&page_size=9","GET",APIdata.discountsAPIdata().get(0), APIdata.discountsAPIdata().get(1));
+		countKeysresponse(jobject);
+		//validateAPIresponsedatatype(jobject,APIdata.responseDtype);
+		//ValidateResponseData(jobject,APIdata.responseData);
+		countHeaders();
+		saperator();
+	}
+	
+	public static void editDiscountsAPICase1()
+	{
+		saperator();
+		jobject =execute("http://obscuro-staging.gofynd.com/api/edit-discount/","POST",APIdata.editDiscountsAPIdata().get(0), APIdata.editDiscountsAPIdata().get(1));
+		countKeysresponse(jobject);
+		countHeaders();
+		//validateAPIresponsedatatype(jobject,APIdata.responseDtype);
+		//ValidateResponseData(jobject,APIdata.responseData);
+		saperator();
+	}
+	
+	public static void StoreListByBrand1()
+	{
+		saperator();
+		jobject =execute("http://obscuro-staging.gofynd.com/api/store-list-by-brand?brand_id=11","GET",APIdata.StoreListByBrandAPIdata().get(0), APIdata.StoreListByBrandAPIdata().get(1));
+		countKeysresponse(jobject);
+		countHeaders();
+		//validateAPIresponsedatatype(jobject,APIdata.responseDtype);
+		//ValidateResponseData(jobject,APIdata.responseData);
+		saperator();
+	}
+	}
+
+
