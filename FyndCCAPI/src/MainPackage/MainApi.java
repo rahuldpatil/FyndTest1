@@ -37,7 +37,7 @@ public class MainApi {
 		
 		*/
 		ReportLogger.GenerateLogs();
-		//new
+		
 		APItests.login();
 		APItests.edit_discount();
 		APItests.get_category_hierarchy();
@@ -84,7 +84,7 @@ public class MainApi {
 		APItests.edit_company();
 		APItests.update_brand_status();
 		APItests.get_image_requirements();
-		
+		xxxxx
 		APItests.get_activity_logs();
 		APItests.edit_offer();
 		APItests.bulk_download_items();
