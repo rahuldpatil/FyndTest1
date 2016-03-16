@@ -13,7 +13,7 @@ public class MainApi {
 	public static void main(String[] args) {
 		
 		
-		/*// TODO Auto-generated method stub
+/*// TODO Auto-generated method stub
 		
 		APItests.LoginAPICase1();
 		APItests.DiscountsAPICase1();
@@ -41,9 +41,14 @@ public class MainApi {
 		APItests.login();
 		APItests.edit_discount();
 		APItests.get_category_hierarchy();
+		
+		
+		
 		APItests.upload_brand_images();
-		//APItests.orders();
-		//APItests.fyndr_details();
+		/*APItests.orders();
+		 * 
+		 * jhgjhgjhg
+		APItests.fyndr_details();
 		APItests.get_collection_items();
 		APItests.search_items();
 		APItests.store_list_by_brand();
@@ -51,40 +56,41 @@ public class MainApi {
 		APItests.offers();
 		APItests.get_companies();
 		APItests.login();
-		//APItests.fyndr_geography();
-		//APItests.store_statistics();
+		APItests.fyndr_geography();
+		APItests.store_statistics();
 		APItests.get_items_list_grid();
-		APItests.add_store();  //problem
+		APItests.add_store();
 		APItests.get_brand_category_subcategory();
 		APItests.update_all_brands_priority();
 		APItests.edit_brand();
-		//APItests.fyndr_city();
+		APItests.fyndr_city();
 		APItests.add_collection();
 		APItests.get_collections();
 		APItests.update_item();
-		//APItests.fyndr_attendance();
+		APItests.fyndr_attendance();
 		APItests.add_item_to_collection();
-		//APItests.fyndr_list();
-		//APItests.fyndr_mobile();
+		APItests.fyndr_list();
+		APItests.fyndr_mobile();
 		APItests.unpublish_collection();
 		APItests.discounts();
 		APItests.quarantine_item();
 		APItests.edit_store();
 		APItests.edit_collection();
-		APItests.add_brand(); // problem
-		//APItests.rules();
+		APItests.add_brand();
+		APItests.rules();
 		APItests.get_value_by_filter();
 		APItests.get_verification_statistics();
 		APItests.help();
 		APItests.edit_company();
 		APItests.update_brand_status();
 		APItests.get_image_requirements();
+		
 		APItests.get_activity_logs();
 		APItests.edit_offer();
-		APItests.bulk_download_items(); // problem
+		APItests.bulk_download_items();
 		APItests.publish_collection();
 		APItests.add_item_pull_to_refresh();
-		APItests.update_item_pull_to_refresh();
+		APItests.update_item_pull_to_refresh();*/
 
 
 
