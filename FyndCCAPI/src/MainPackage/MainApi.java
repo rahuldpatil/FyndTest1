@@ -84,7 +84,7 @@ public class MainApi {
 		APItests.edit_company();
 		APItests.update_brand_status();
 		APItests.get_image_requirements();
-		xx
+		xx xxxxx
 		APItests.get_activity_logs();
 		APItests.edit_offer();
 		APItests.bulk_download_items();
