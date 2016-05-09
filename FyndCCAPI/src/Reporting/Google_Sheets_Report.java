@@ -37,8 +37,8 @@ public class Google_Sheets_Report  {
 	{
 		SPREADSHEET_FEED_URL = new URL("https://spreadsheets.google.com/feeds/spreadsheets/private/full");
 		
-		File p12 = new File("D:\\TempProj\\ProductReliability-25cc23978dce.p12");
-		
+		File p12 = new File("ProductReliability-25cc23978dce.p12");
+		//File p12 = new File("D:\\TempProj\\ProductReliability-25cc23978dce.p12");
 		HttpTransport httpTransport = new NetHttpTransport();
         JacksonFactory jsonFactory = new JacksonFactory();
         String[] SCOPESArray = {"https://spreadsheets.google.com/feeds", "https://spreadsheets.google.com/feeds/spreadsheets/private/full", "https://docs.google.com/feeds"};

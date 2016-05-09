@@ -25,8 +25,8 @@ public class APIdata {
 public static List<HashMap> loginAPIdata() throws Exception {
 		 
 		 clearmaps();
-		 keyval.put("username", "obscuro");
-		 keyval.put("password", "reset123$");
+		 keyval.put("username", "productallapitest");
+		 keyval.put("password", "apitest");
 		 responseDtype.put("token", "Text");
 		 responseDtype.put("username", "Text");
 		 responseData.put("id", "1");
@@ -44,7 +44,7 @@ public static List<HashMap> loginAPIdata() throws Exception {
 	 public static List<HashMap> discountsAPIdata() throws Exception {
 		 
 		 clearmaps();
-		 headers.put("Authorization", APItests.essentialHeaders.getString("token"));
+		 //headers.put("Authorization", APItests.essentialHeaders.getString("token"));
 		 responseDtype.put("end_date", "Text");
 		 data.add(headers);
 		 data.add(keyval);
@@ -72,7 +72,7 @@ public static List<HashMap> loginAPIdata() throws Exception {
 		 keyval.put("uses","10000");
 		 keyval.put("brand_id","9");
 		 keyval.put("brandName","Puma");
-		 headers.put("Authorization", APItests.essentialHeaders.getString("token"));
+		 //headers.put("Authorization", APItests.essentialHeaders.getString("token"));
 		 responseDtype.put("end_date", "Text");
 		 data.add(headers);
 		 data.add(keyval);
@@ -119,7 +119,7 @@ public static List<HashMap> loginAPIdata() throws Exception {
 	 public static List<HashMap> edit_discount_1_data () throws Exception {
 	  
 	    clearmaps();
-	    headers.put("Authorization", APItests.essentialHeaders.getString("token"));
+	    //headers.put("Authorization", APItests.essentialHeaders.getString("token"));
 		 keyval.put("discount_type","Absolute");
 		 keyval.put("name","MumRun");
 		 keyval.put("is_active","FALSE");
@@ -145,7 +145,7 @@ public static List<HashMap> loginAPIdata() throws Exception {
 	 public static List<HashMap> avis_Login_1_data () throws Exception {
 	  
 	    clearmaps();
-	    headers.put("Authorization", APItests.essentialHeaders.getString("token"));
+	    //headers.put("Authorization", APItests.essentialHeaders.getString("token"));
 	     data.add(headers);
 	    data.add(keyval);
 	    data.add(responseDtype);
@@ -157,7 +157,7 @@ public static List<HashMap> loginAPIdata() throws Exception {
 	  
 	    clearmaps();
 	    keyval.put("gender", "Men");
-	    headers.put("Authorization", APItests.essentialHeaders.getString("token"));
+	    //headers.put("Authorization", APItests.essentialHeaders.getString("token"));
 	     data.add(headers);
 	    data.add(keyval);
 	    data.add(responseDtype);
@@ -168,7 +168,7 @@ public static List<HashMap> loginAPIdata() throws Exception {
 	 public static List<HashMap> upload_brand_images_1_data () throws Exception {
 	  
 	    clearmaps();
-	    headers.put("Authorization", APItests.essentialHeaders.getString("token"));
+	    //headers.put("Authorization", APItests.essentialHeaders.getString("token"));
 	     data.add(headers);
 	    data.add(keyval);
 	    data.add(responseDtype);
@@ -179,7 +179,7 @@ public static List<HashMap> loginAPIdata() throws Exception {
 	 public static List<HashMap> orders_1_data () throws Exception {
 	  
 	    clearmaps();
-	    headers.put("Authorization", APItests.essentialHeaders.getString("token"));
+	    //headers.put("Authorization", APItests.essentialHeaders.getString("token"));
 	     data.add(headers);
 	    data.add(keyval);
 	    data.add(responseDtype);
@@ -190,7 +190,7 @@ public static List<HashMap> loginAPIdata() throws Exception {
 	 public static List<HashMap> fyndr_1_data () throws Exception {
 	  
 	    clearmaps();
-	    headers.put("Authorization", APItests.essentialHeaders.getString("token"));
+	    //headers.put("Authorization", APItests.essentialHeaders.getString("token"));
 	     data.add(headers);
 	    data.add(keyval);
 	    data.add(responseDtype);
@@ -201,7 +201,7 @@ public static List<HashMap> loginAPIdata() throws Exception {
 	 public static List<HashMap> get_collection_items_1_data () throws Exception {
 	  
 	    clearmaps();
-	    headers.put("Authorization", APItests.essentialHeaders.getString("token"));
+	    //headers.put("Authorization", APItests.essentialHeaders.getString("token"));
 	     data.add(headers);
 	    data.add(keyval);
 	    data.add(responseDtype);
@@ -212,7 +212,7 @@ public static List<HashMap> loginAPIdata() throws Exception {
 	 public static List<HashMap> search_items_1_data () throws Exception {
 	  
 	    clearmaps();
-	    headers.put("Authorization", APItests.essentialHeaders.getString("token"));
+	    //headers.put("Authorization", APItests.essentialHeaders.getString("token"));
 	     data.add(headers);
 	    data.add(keyval);
 	    data.add(responseDtype);
@@ -223,7 +223,7 @@ public static List<HashMap> loginAPIdata() throws Exception {
 	 public static List<HashMap> store_list_by_brand_1_data () throws Exception {
 	  
 	    clearmaps();
-	    headers.put("Authorization", APItests.essentialHeaders.getString("token"));
+	    //headers.put("Authorization", APItests.essentialHeaders.getString("token"));
 	     data.add(headers);
 	    data.add(keyval);
 	    data.add(responseDtype);
@@ -234,7 +234,7 @@ public static List<HashMap> loginAPIdata() throws Exception {
 	 public static List<HashMap> get_next_item_1_data () throws Exception {
 	  
 	    clearmaps();
-	    headers.put("Authorization", APItests.essentialHeaders.getString("token"));
+	    //headers.put("Authorization", APItests.essentialHeaders.getString("token"));
 	     data.add(headers);
 	    data.add(keyval);
 	    data.add(responseDtype);
@@ -245,7 +245,7 @@ public static List<HashMap> loginAPIdata() throws Exception {
 	 public static List<HashMap> offers_1_data () throws Exception {
 	  
 	    clearmaps();
-	    headers.put("Authorization", APItests.essentialHeaders.getString("token"));
+	    //headers.put("Authorization", APItests.essentialHeaders.getString("token"));
 	     data.add(headers);
 	    data.add(keyval);
 	    data.add(responseDtype);
@@ -256,7 +256,7 @@ public static List<HashMap> loginAPIdata() throws Exception {
 	 public static List<HashMap> get_companies_1_data () throws Exception {
 	  
 	    clearmaps();
-	    headers.put("Authorization", APItests.essentialHeaders.getString("token"));
+	    //headers.put("Authorization", APItests.essentialHeaders.getString("token"));
 	     data.add(headers);
 	    data.add(keyval);
 	    data.add(responseDtype);
@@ -269,7 +269,7 @@ public static List<HashMap> loginAPIdata() throws Exception {
 	    clearmaps();
 	    keyval.put("username", "obscuro");
 		keyval.put("password", "reset123$");
-	    //headers.put("Authorization", APItests.essentialHeaders.getString("token"));
+	    ////headers.put("Authorization", APItests.essentialHeaders.getString("token"));
 	    data.add(headers);
 	    data.add(keyval);
 	    data.add(responseDtype);
@@ -280,7 +280,7 @@ public static List<HashMap> loginAPIdata() throws Exception {
 	 public static List<HashMap> fyndr_geography_1_data () throws Exception {
 	  
 	    clearmaps();
-	    headers.put("Authorization", APItests.essentialHeaders.getString("token"));
+	    //headers.put("Authorization", APItests.essentialHeaders.getString("token"));
 	    data.add(headers);
 	    data.add(keyval);
 	    data.add(responseDtype);
@@ -324,7 +324,7 @@ keyval.put("uses","10000");
 keyval.put("brand_id","9");
 
 keyval.put("brandName","Puma");
-headers.put("Authorization", APItests.essentialHeaders.getString("token")); 
+//headers.put("Authorization", APItests.essentialHeaders.getString("token")); 
  data.add(headers); 
  data.add(keyval); 
  data.add(responseDtype); 
@@ -340,7 +340,7 @@ public static List<HashMap> avis_login_data() throws Exception {
 keyval.put("username","FYND00011");
 
 keyval.put("password","9921960606");
-headers.put("Authorization", APItests.essentialHeaders.getString("token")); 
+//headers.put("Authorization", APItests.essentialHeaders.getString("token")); 
  data.add(headers); 
  data.add(keyval); 
  data.add(responseDtype); 
@@ -354,7 +354,7 @@ public static List<HashMap> get_category_hierarchy_data() throws Exception {
  clearmaps();
 
 keyval.put("gender","Men");
-headers.put("Authorization", APItests.essentialHeaders.getString("token")); 
+//headers.put("Authorization", APItests.essentialHeaders.getString("token")); 
  data.add(headers); 
  data.add(keyval); 
  data.add(responseDtype); 
@@ -374,7 +374,7 @@ keyval.put("image_type","product");
 keyval.put("upload_from","Dropbox");
 
 keyval.put("url","https://www.dropbox.com/s/1blceqjd9i95gvv/20160202_ParxClothing_76items.zip?dl=0");
-headers.put("Authorization", APItests.essentialHeaders.getString("token")); 
+//headers.put("Authorization", APItests.essentialHeaders.getString("token")); 
  data.add(headers); 
  data.add(keyval); 
  data.add(responseDtype); 
@@ -394,7 +394,7 @@ keyval.put("bag_id","2480");
 keyval.put("state","current");
 
 keyval.put("order_type","buy");
-headers.put("Authorization", APItests.essentialHeaders.getString("token")); 
+//headers.put("Authorization", APItests.essentialHeaders.getString("token")); 
  data.add(headers); 
  data.add(keyval); 
  data.add(responseDtype); 
@@ -410,7 +410,7 @@ headers.put("Authorization", APItests.essentialHeaders.getString("token"));
 keyval.put("brand_id","46");
 
 keyval.put("is_active","FALSE");
-headers.put("Authorization", APItests.essentialHeaders.getString("token")); 
+//headers.put("Authorization", APItests.essentialHeaders.getString("token")); 
  data.add(headers); 
  data.add(keyval); 
  data.add(responseDtype); 
@@ -424,7 +424,7 @@ public static List<HashMap> get_collection_items_data() throws Exception {
  clearmaps();
 
 
-headers.put("Authorization", APItests.essentialHeaders.getString("token")); 
+//headers.put("Authorization", APItests.essentialHeaders.getString("token")); 
  data.add(headers); 
  data.add(keyval); 
  data.add(responseDtype); 
@@ -440,7 +440,7 @@ public static List<HashMap> search_items_data() throws Exception {
 keyval.put("username","obscuro");
 
 keyval.put("password","reset123$");
-headers.put("Authorization", APItests.essentialHeaders.getString("token")); 
+//headers.put("Authorization", APItests.essentialHeaders.getString("token")); 
  data.add(headers); 
  data.add(keyval); 
  data.add(responseDtype); 
@@ -488,7 +488,7 @@ keyval.put("location_type","mall");
 keyval.put("cc_enabled","DISABLED");
 
 keyval.put("brand_id","1");
-headers.put("Authorization", APItests.essentialHeaders.getString("token")); 
+//headers.put("Authorization", APItests.essentialHeaders.getString("token")); 
  data.add(headers); 
  data.add(keyval); 
  data.add(responseDtype); 
@@ -525,7 +525,7 @@ keyval.put("primary_color","Red");
 
 keyval.put("flow","quarantisation");
 
-headers.put("Authorization", APItests.essentialHeaders.getString("token")); 
+//headers.put("Authorization", APItests.essentialHeaders.getString("token")); 
  data.add(headers); 
  data.add(keyval); 
  data.add(responseDtype); 
@@ -559,7 +559,7 @@ keyval.put("action_url","http://www.google.com");
 keyval.put("offer_id","1");
 
 keyval.put("banner_type","Carousal");
-headers.put("Authorization", APItests.essentialHeaders.getString("token")); 
+//headers.put("Authorization", APItests.essentialHeaders.getString("token")); 
  data.add(headers); 
  data.add(keyval); 
  data.add(responseDtype); 
@@ -575,7 +575,7 @@ public static List<HashMap> get_companies_data() throws Exception {
 keyval.put("username","obscuro");
 
 keyval.put("password","reset123$");
-headers.put("Authorization", APItests.essentialHeaders.getString("token")); 
+//headers.put("Authorization", APItests.essentialHeaders.getString("token")); 
  data.add(headers); 
  data.add(keyval); 
  data.add(responseDtype); 
@@ -591,7 +591,7 @@ public static List<HashMap> login_data() throws Exception {
 keyval.put("username","obscuro");
 
 keyval.put("password","reset123$");
-headers.put("Authorization", APItests.essentialHeaders.getString("token")); 
+//headers.put("Authorization", APItests.essentialHeaders.getString("token")); 
  data.add(headers); 
  data.add(keyval); 
  data.add(responseDtype); 
@@ -605,7 +605,7 @@ headers.put("Authorization", APItests.essentialHeaders.getString("token"));
  clearmaps();
 
 keyval.put("zones","{\\zones\\:[{\\name\\:\\North\\,\\end_date\\:\\2016-01-13T12:39:00Z\\,\\level\\:1,\\city_id\\:1,\\children\\:[{\\name\\:\\SA1\\,\\end_date\\:\\2016-01-13T12:39:00Z\\,\\level\\:2,\\city_id\\:1,\\start_date\\:\\2016-01-05T12:49:00Z\\,\\disabled\\:true,\\id\\:43,\\disabled_reason\\:null,\\children\\:[],\\$$hashKey\\:\\object:543\\},{\\name\\:\\SA2\\,\\end_date\\:\\2016-01-13T12:39:00Z\\,\\level\\:2,\\city_id\\:1,\\start_date\\:\\2016-01-05T12:49:00Z\\,\\disabled\\:true,\\id\\:44,\\disabled_reason\\:null,\\children\\:[],\\$$hashKey\\:\\object:544\\},{\\name\\:\\Test\\,\\end_date\\:\\2016-01-13T12:39:00Z\\,\\level\\:2,\\city_id\\:1,\\start_date\\:\\2016-01-05T12:49:00Z\\,\\disabled\\:true,\\id\\:48,\\disabled_reason\\:null,\\children\\:[],\\$$hashKey\\:\\object:545\\}],\\disabled\\:true,\\id\\:42,\\disabled_reason\\:null,\\start_date\\:\\2016-01-05T12:49:00Z\\,\\$$hashKey\\:\\object:527\\},{\\name\\:\\North\\,\\level\\:1,\\city_id\\:1,\\id\\:45,\\disabled\\:false,\\disabled_reason\\:null,\\children\\:[{\\name\\:\\SA1\\,\\level\\:2,\\city_id\\:1,\\children\\:[],\\disabled\\:false,\\disabled_reason\\:null,\\id\\:46,\\$$hashKey\\:\\object:582\\},{\\name\\:\\SA2\\,\\level\\:2,\\city_id\\:1,\\children\\:[],\\disabled\\:false,\\disabled_reason\\:null,\\id\\:47,\\$$hashKey\\:\\object:583\\}],\\$$hashKey\\:\\object:528\\}]},");
-headers.put("Authorization", APItests.essentialHeaders.getString("token")); 
+//headers.put("Authorization", APItests.essentialHeaders.getString("token")); 
  data.add(headers); 
  data.add(keyval); 
  data.add(responseDtype); 
@@ -621,7 +621,7 @@ public static List<HashMap> store_statistics_data() throws Exception {
 keyval.put("username","neeraj");
 
 keyval.put("password","123");
-headers.put("Authorization", APItests.essentialHeaders.getString("token")); 
+//headers.put("Authorization", APItests.essentialHeaders.getString("token")); 
  data.add(headers); 
  data.add(keyval); 
  data.add(responseDtype); 
@@ -635,7 +635,7 @@ public static List<HashMap> get_items_list_grid_data() throws Exception {
  clearmaps();
 
 keyval.put("name","Colors");
-headers.put("Authorization", APItests.essentialHeaders.getString("token")); 
+//headers.put("Authorization", APItests.essentialHeaders.getString("token")); 
  data.add(headers); 
  data.add(keyval); 
  data.add(responseDtype); 
@@ -683,7 +683,7 @@ keyval.put("location_type","mall");
 keyval.put("cc_enabled","DISABLED");
 
 keyval.put("brand_id","1");
-headers.put("Authorization", APItests.essentialHeaders.getString("token")); 
+//headers.put("Authorization", APItests.essentialHeaders.getString("token")); 
  data.add(headers); 
  data.add(keyval); 
  data.add(responseDtype); 
@@ -715,7 +715,7 @@ keyval.put("banner_women","undefined");
 keyval.put("banner_girls","undefined");
 
 keyval.put("banner_boys","undefined");
-headers.put("Authorization", APItests.essentialHeaders.getString("token")); 
+//headers.put("Authorization", APItests.essentialHeaders.getString("token")); 
  data.add(headers); 
  data.add(keyval); 
  data.add(responseDtype); 
@@ -729,7 +729,7 @@ public static List<HashMap> update_all_brands_priority_data() throws Exception {
  clearmaps();
 
 keyval.put("brand_list","[{\"id\":51,\"name\":\"Happily Unmarried\",\"is_active\":true,\"priority\":8,\"$$hashKey\":\"object:1160\"},{\"id\":55,\"name\":\"VALENTINE\",\"is_active\":true,\"priority\":6,\"$$hashKey\":\"object:1161\"},{\"id\":60,\"name\":\"Bhell\",\"is_active\":true,\"priority\":3,\"$$hashKey\":\"object:1162\"},{\"id\":62,\"name\":\"mustard\",\"is_active\":true,\"priority\":2,\"$$hashKey\":\"object:1163\"}]");
-headers.put("Authorization", APItests.essentialHeaders.getString("token")); 
+//headers.put("Authorization", APItests.essentialHeaders.getString("token")); 
  data.add(headers); 
  data.add(keyval); 
  data.add(responseDtype); 
@@ -763,7 +763,7 @@ keyval.put("banner_girls","undefined");
 keyval.put("banner_boys","undefined");
 
 
-headers.put("Authorization", APItests.essentialHeaders.getString("token")); 
+//headers.put("Authorization", APItests.essentialHeaders.getString("token")); 
  data.add(headers); 
  data.add(keyval); 
  data.add(responseDtype); 
@@ -779,7 +779,7 @@ public static List<HashMap> fyndr_geography_data() throws Exception {
 keyval.put("brand_id","46");
 
 keyval.put("is_active","FALSE");
-headers.put("Authorization", APItests.essentialHeaders.getString("token")); 
+//headers.put("Authorization", APItests.essentialHeaders.getString("token")); 
  data.add(headers); 
  data.add(keyval); 
  data.add(responseDtype); 
@@ -790,7 +790,7 @@ headers.put("Authorization", APItests.essentialHeaders.getString("token"));
 public static List<HashMap> fyndr_city_data() throws Exception {
 	 clearmaps();
 
-	 headers.put("Authorization", APItests.essentialHeaders.getString("token")); 
+	 //headers.put("Authorization", APItests.essentialHeaders.getString("token")); 
 	 data.add(headers); 
 	 data.add(keyval); 
 	 data.add(responseDtype); 
@@ -802,7 +802,7 @@ public static List<HashMap> fyndr_city_data() throws Exception {
 public static List<HashMap> fyndr_mobile_data() throws Exception {
 	 clearmaps();
 
-	 headers.put("Authorization", APItests.essentialHeaders.getString("token")); 
+	 //headers.put("Authorization", APItests.essentialHeaders.getString("token")); 
 	 data.add(headers); 
 	 data.add(keyval); 
 	 data.add(responseDtype); 
@@ -831,7 +831,7 @@ keyval.put("gender","[\\women\\],");
 keyval.put("is_active","TRUE");
 
 keyval.put("end_date","2015-10-29T13:45:50.731009Z");
-headers.put("Authorization", APItests.essentialHeaders.getString("token")); 
+//headers.put("Authorization", APItests.essentialHeaders.getString("token")); 
  data.add(headers); 
  data.add(keyval); 
  data.add(responseDtype); 
@@ -845,7 +845,7 @@ public static List<HashMap> get_collections_data() throws Exception {
  clearmaps();
 
 
-headers.put("Authorization", APItests.essentialHeaders.getString("token")); 
+//headers.put("Authorization", APItests.essentialHeaders.getString("token")); 
  data.add(headers); 
  data.add(keyval); 
  data.add(responseDtype); 
@@ -871,7 +871,7 @@ keyval.put("slides","[{\"id\":2,\"image_url\":\"http://obscuro-staging.gofynd.co
 keyval.put("code","BHTS5123@RED");
 
 keyval.put("cc_enabled","true");
-headers.put("Authorization", APItests.essentialHeaders.getString("token")); 
+//headers.put("Authorization", APItests.essentialHeaders.getString("token")); 
  data.add(headers); 
  data.add(keyval); 
  data.add(responseDtype); 
@@ -884,7 +884,7 @@ headers.put("Authorization", APItests.essentialHeaders.getString("token"));
 public static List<HashMap> fyndr_attendance_data() throws Exception {
  clearmaps();
 
-headers.put("Authorization", APItests.essentialHeaders.getString("token")); 
+//headers.put("Authorization", APItests.essentialHeaders.getString("token")); 
  data.add(headers); 
  data.add(keyval); 
  data.add(responseDtype); 
@@ -900,7 +900,7 @@ public static List<HashMap> add_item_to_collection_data() throws Exception {
 keyval.put("items","[5]");
 
 keyval.put("collection_id","63");
-headers.put("Authorization", APItests.essentialHeaders.getString("token")); 
+//headers.put("Authorization", APItests.essentialHeaders.getString("token")); 
  data.add(headers); 
  data.add(keyval); 
  data.add(responseDtype); 
@@ -911,7 +911,7 @@ headers.put("Authorization", APItests.essentialHeaders.getString("token"));
 public static List<HashMap> fyndr_list_data() throws Exception {
 	 clearmaps();
 
-	headers.put("Authorization", APItests.essentialHeaders.getString("token")); 
+	//headers.put("Authorization", APItests.essentialHeaders.getString("token")); 
 	 data.add(headers); 
 	 data.add(keyval); 
 	 data.add(responseDtype); 
@@ -923,7 +923,7 @@ public static List<HashMap> fyndr_list_data() throws Exception {
 public static List<HashMap> fyndr_details_data() throws Exception {
 	 clearmaps();
 
-	headers.put("Authorization", APItests.essentialHeaders.getString("token")); 
+	//headers.put("Authorization", APItests.essentialHeaders.getString("token")); 
 	 data.add(headers); 
 	 data.add(keyval); 
 	 data.add(responseDtype); 
@@ -938,7 +938,7 @@ public static List<HashMap> fyndr_data() throws Exception {
 keyval.put("brand_id","46");
 
 keyval.put("is_active","FALSE");
-headers.put("Authorization", APItests.essentialHeaders.getString("token")); 
+//headers.put("Authorization", APItests.essentialHeaders.getString("token")); 
  data.add(headers); 
  data.add(keyval); 
  data.add(responseDtype); 
@@ -952,7 +952,7 @@ public static List<HashMap> unpublish_collection_data() throws Exception {
  clearmaps();
 
 keyval.put("collection_id","1");
-headers.put("Authorization", APItests.essentialHeaders.getString("token")); 
+//headers.put("Authorization", APItests.essentialHeaders.getString("token")); 
  data.add(headers); 
  data.add(keyval); 
  data.add(responseDtype); 
@@ -966,7 +966,7 @@ public static List<HashMap> discounts_data() throws Exception {
  clearmaps();
 
 
-headers.put("Authorization", APItests.essentialHeaders.getString("token")); 
+//headers.put("Authorization", APItests.essentialHeaders.getString("token")); 
  data.add(headers); 
  data.add(keyval); 
  data.add(responseDtype); 
@@ -1000,7 +1000,7 @@ keyval.put("slides","[{\"id\":2,\"image_url\":\"http://obscuro-staging.gofynd.co
 keyval.put("code","BHTS5123@RED");
 
 keyval.put("primary_color","Red");
-headers.put("Authorization", APItests.essentialHeaders.getString("token")); 
+//headers.put("Authorization", APItests.essentialHeaders.getString("token")); 
  data.add(headers); 
  data.add(keyval); 
  data.add(responseDtype); 
@@ -1068,7 +1068,7 @@ keyval.put("image_type","product");
 keyval.put("upload_from","Dropbox");
 
 keyval.put("url","https://www.dropbox.com/s/1blceqjd9i95gvv/20160202_ParxClothing_76items.zip?dl=0");
-headers.put("Authorization", APItests.essentialHeaders.getString("token")); 
+//headers.put("Authorization", APItests.essentialHeaders.getString("token")); 
  data.add(headers); 
  data.add(keyval); 
  data.add(responseDtype); 
@@ -1110,7 +1110,7 @@ keyval.put("priority","0");
 keyval.put("banner_thumbnail","http://obscuro-staging.gofynd.com:9999/media/pictures/collection_banner/270x0/image_flyCwYt.jpg");
 
 keyval.put("icon_thumbnail","http://obscuro-staging.gofynd.com:9999/media/pictures/collection_icon/75x0/image_JWpoxng.jpg");
-headers.put("Authorization", APItests.essentialHeaders.getString("token")); 
+//headers.put("Authorization", APItests.essentialHeaders.getString("token")); 
  data.add(headers); 
  data.add(keyval); 
  data.add(responseDtype); 
@@ -1132,7 +1132,7 @@ keyval.put("name","Testing");
 keyval.put("alternate_name","Testing");
 
 keyval.put("company_id","82");
-headers.put("Authorization", APItests.essentialHeaders.getString("token")); 
+//headers.put("Authorization", APItests.essentialHeaders.getString("token")); 
  data.add(headers); 
  data.add(keyval); 
  data.add(responseDtype); 
@@ -1152,7 +1152,7 @@ keyval.put("bag_id","2480");
 keyval.put("state","current");
 
 keyval.put("order_type","buy");
-headers.put("Authorization", APItests.essentialHeaders.getString("token")); 
+//headers.put("Authorization", APItests.essentialHeaders.getString("token")); 
  data.add(headers); 
  data.add(keyval); 
  data.add(responseDtype); 
@@ -1166,7 +1166,7 @@ public static List<HashMap> get_value_by_filter_data() throws Exception {
  clearmaps();
 
 keyval.put("name","Colors");
-headers.put("Authorization", APItests.essentialHeaders.getString("token")); 
+//headers.put("Authorization", APItests.essentialHeaders.getString("token")); 
  data.add(headers); 
  data.add(keyval); 
  data.add(responseDtype); 
@@ -1180,7 +1180,7 @@ public static List<HashMap> get_verification_statistics_data() throws Exception 
  clearmaps();
 
 
-headers.put("Authorization", APItests.essentialHeaders.getString("token")); 
+//headers.put("Authorization", APItests.essentialHeaders.getString("token")); 
  data.add(headers); 
  data.add(keyval); 
  data.add(responseDtype); 
@@ -1202,7 +1202,7 @@ keyval.put("user","123");
 keyval.put("location","mumbai");
 
 keyval.put("other","bla bla");
-headers.put("Authorization", APItests.essentialHeaders.getString("token")); 
+//headers.put("Authorization", APItests.essentialHeaders.getString("token")); 
  data.add(headers); 
  data.add(keyval); 
  data.add(responseDtype); 
@@ -1262,7 +1262,7 @@ keyval.put("_expand","true");
 keyval.put("cst_scan","imgs/placeholder.png");
 
 keyval.put("id","1");
-headers.put("Authorization", APItests.essentialHeaders.getString("token")); 
+//headers.put("Authorization", APItests.essentialHeaders.getString("token")); 
  data.add(headers); 
  data.add(keyval); 
  data.add(responseDtype); 
@@ -1278,7 +1278,7 @@ public static List<HashMap> update_brand_status_data() throws Exception {
 keyval.put("brand_id","46");
 keyval.put("is_active","false");
 
-headers.put("Authorization", APItests.essentialHeaders.getString("token")); 
+//headers.put("Authorization", APItests.essentialHeaders.getString("token")); 
 
  data.add(headers); 
  data.add(keyval); 
@@ -1299,7 +1299,7 @@ keyval.put("display_item","true");
 keyval.put("flow","verification");
 
 keyval.put("brand_id","1");
-headers.put("Authorization", APItests.essentialHeaders.getString("token")); 
+//headers.put("Authorization", APItests.essentialHeaders.getString("token")); 
  data.add(headers); 
  data.add(keyval); 
  data.add(responseDtype); 
@@ -1313,7 +1313,7 @@ public static List<HashMap> get_activity_logs_data() throws Exception {
  clearmaps();
 
 keyval.put("collection_id","1");
-headers.put("Authorization", APItests.essentialHeaders.getString("token")); 
+//headers.put("Authorization", APItests.essentialHeaders.getString("token")); 
  data.add(headers); 
  data.add(keyval); 
  data.add(responseDtype); 
@@ -1347,7 +1347,7 @@ keyval.put("action_url","http://orbis.gofynd.com/api/v1/inventory/browse-by-coll
 keyval.put("banner_type","Carousal");
 
 keyval.put("id","17");
-headers.put("Authorization", APItests.essentialHeaders.getString("token")); 
+//headers.put("Authorization", APItests.essentialHeaders.getString("token")); 
  data.add(headers); 
  data.add(keyval); 
  data.add(responseDtype); 
@@ -1362,7 +1362,7 @@ public static List<HashMap> bulk_download_items_data() throws Exception {
 
 keyval.put("brand_id","1");
 keyval.put("items","[{\"code\":\"15AWY255-TR-DNMP@MULTICOLOR\",\"collection\":\"\",\"brand\":\"\",\"season\":\"Autumn\",\"year\":\"2015\",\"gender\":\"Women\",\"category\":\"Ethnic wear\",\"subcategory\":\"Kurtas & Kurtis\",\"product_type\":\"Leggings\",\"style\":\"\",\"color\":\"Multicolour\",\"primarycolor\":\"Blue\",\"sleeve_type\":\"\",\"material\":\"Polyester—edited\",\"neck_type\":\"\",\"product_fit\":\"\",\"denim_fade\":\"\",\"denim_shade\":\"\",\"rise\":\"\",\"padding\":\"\",\"coverage\":\"\",\"ocassion\":\"\",\"name\":\"Multicolour Leggings\",\"description\":\"\",\"style_tip\":\"\",\"search_keywords\":\"\",\"model_info\":\"\"}]");
-headers.put("Authorization", APItests.essentialHeaders.getString("token")); 
+//headers.put("Authorization", APItests.essentialHeaders.getString("token")); 
  data.add(headers); 
  data.add(keyval); 
  data.add(responseDtype); 
@@ -1376,7 +1376,7 @@ public static List<HashMap> publish_collection_data() throws Exception {
  clearmaps();
 
 keyval.put("collection_id","1");
-headers.put("Authorization", APItests.essentialHeaders.getString("token")); 
+//headers.put("Authorization", APItests.essentialHeaders.getString("token")); 
  data.add(headers); 
  data.add(keyval); 
  data.add(responseDtype); 
@@ -1390,7 +1390,7 @@ public static List<HashMap> add_item_pull_to_refresh_data() throws Exception {
  clearmaps();
 
 keyval.put("file_data","CSV-list:https://app.asana.com/app/asana/-/download_asset?asset_id=89898351900177");
-headers.put("Authorization", APItests.essentialHeaders.getString("token")); 
+//headers.put("Authorization", APItests.essentialHeaders.getString("token")); 
  data.add(headers); 
  data.add(keyval); 
  data.add(responseDtype); 
@@ -1404,7 +1404,7 @@ public static List<HashMap> update_item_pull_to_refresh_data() throws Exception 
  clearmaps();
 
 keyval.put("file_data","CSV-list:https://app.asana.com/app/asana/-/download_asset?asset_id=89898351900179");
-headers.put("Authorization", APItests.essentialHeaders.getString("token")); 
+//headers.put("Authorization", APItests.essentialHeaders.getString("token")); 
  data.add(headers); 
  data.add(keyval); 
  data.add(responseDtype); 

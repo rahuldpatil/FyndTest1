@@ -2,13 +2,16 @@ package MainPackage;
 
 
 
+import java.io.FileWriter;
+import java.io.IOException;
+
 import org.json.JSONObject;
 
 
 
 public class MainApi {
 	//public static String json;
-	 public static JSONObject jobject;
+	public static JSONObject jobject;
 	 	 
 	public static void main(String[] args) {
 		
@@ -37,6 +40,7 @@ public class MainApi {
 		
 		*/
 		ReportLogger.GenerateLogs();
+		ReportJson.GenerateLogs();
 		
 		APItests.login();
 		APItests.edit_discount();
@@ -45,9 +49,7 @@ public class MainApi {
 		
 		
 		APItests.upload_brand_images();
-		/*APItests.orders();
-		 * 
-		 * jhgjhgjhg
+		APItests.orders();
 		APItests.fyndr_details();
 		APItests.get_collection_items();
 		APItests.search_items();
@@ -80,20 +82,31 @@ public class MainApi {
 		APItests.rules();
 		APItests.get_value_by_filter();
 		APItests.get_verification_statistics();
-		APItests.help();
+		//APItests.help();
 		APItests.edit_company();
 		APItests.update_brand_status();
 		APItests.get_image_requirements();
-		xx xx
 		APItests.get_activity_logs();
 		APItests.edit_offer();
 		APItests.bulk_download_items();
 		APItests.publish_collection();
 		APItests.add_item_pull_to_refresh();
-		APItests.update_item_pull_to_refresh();*/
+		APItests.update_item_pull_to_refresh();
 
-
-
+		ReportLogger.Close_logs();
+		ReportJson.Close_logs();
+		
+		FileWriter file;
+		try {
+			file = new FileWriter("test.json");
+		
+		file.write(CommonActions.API_url.toString());
+		file.flush();
+		file.close();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	
 }}

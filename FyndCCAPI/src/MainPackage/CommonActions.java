@@ -9,6 +9,18 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.sql.*;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -33,6 +45,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
+import Reporting.Database_Reporting;
 import Reporting.Google_Sheets_Report;
 
 public class CommonActions {
@@ -42,6 +55,7 @@ public class CommonActions {
 	public static HttpResponse response;
 	public static HashMap reportdata = new HashMap();
 	static DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+	static DateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
 	static Date date = new Date();	
 	static long startTime;
 	static long stopTime;
@@ -51,6 +65,12 @@ public class CommonActions {
 	static String headerval="";
 	static String responseString="";
 	static String JsonString="";
+	static HttpClient httpclient = new DefaultHttpClient();
+	public static JSONObject jsonreport;
+	public static JSONObject API_url = new JSONObject();
+	public static JSONObject API_method;
+	public static JSONObject JsonAPI_data;
+	
 	
 	public static void reportdatasetnull()
 	{
@@ -65,29 +85,52 @@ public class CommonActions {
 		reportdata.put("NoOfKeys","NA");
 		reportdata.put("TextResponse","NA");
 		reportdata.put("DateRunOn","NA");
+		reportdata.put("TimeRunOn", "NA");
 	}
 	
 	
 	public static JSONObject execute(String url, String methodname,Map<String, Object> apiheaders, Map<String, Object> keyvalue) throws Exception
 	{		
 		try{
+			JsonAPI_data = new JSONObject();
+			API_method = new JSONObject();
 			
 			reportdatasetnull();
 			json=null;
 			jobject=null;
 			response=null;		
-			
+			DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+			DateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
+			Date date = new Date();	
 					
 			reportdata.put("DateRunOn",dateFormat.format(date));
+			reportdata.put("TimeRunOn",timeFormat.format(date));
 			
 			List<NameValuePair> nameValuePairs;
 			
 			
 			ReportLogger.WriteLog("Transaction Started for API "+url+" ");
 			reportdata.put("API", url);
-			HttpClient httpclient = new DefaultHttpClient();
+			//HttpClient httpclient = new DefaultHttpClient();
 			
 			
+			if (url.contains("obscuro"))
+			{
+				reportdata.put("Environment", "Obscuro");
+			}
+			else if ((url.contains("voldemort")))
+			{
+				reportdata.put("Environment", "voldemort");
+			}
+			
+			else if ((url.contains("avis")))
+			{
+				reportdata.put("Environment", "avis");
+			}
+			else if ((url.contains("staging")))
+			{
+				reportdata.put("Environment", "stagging");
+			}
 			
 			
 			if(methodname.compareTo("GET")==0){
@@ -113,7 +156,7 @@ public class CommonActions {
 			response = httpclient.execute(httpget);
 			stopTime = System.currentTimeMillis();
 			ReportLogger.WriteLog("Time lapsed for request: "+ (stopTime-startTime));
-			reportdata.put("ResponseTime", stopTime-startTime+"ms");
+			reportdata.put("ResponseTime", stopTime-startTime+"");
 								
 			}
 			
@@ -142,7 +185,7 @@ public class CommonActions {
 			stopTime = System.currentTimeMillis();
 			
 			ReportLogger.WriteLog("Time lapsed for request: "+ (stopTime-startTime));
-			reportdata.put("ResponseTime", (stopTime-startTime+"ms").toString());
+			reportdata.put("ResponseTime", (stopTime-startTime+"").toString());
 			
 			
 			}
@@ -158,11 +201,21 @@ public class CommonActions {
 			reportdata.put("Header", headerval.toString());	
 			
 			responseString = EntityUtils.toString(response.getEntity());
+			
+			//Convert Response String to Json
+			if(responseString.startsWith("[") && responseString.endsWith("]"))
+			{
+				json=converStringtoJson(responseString);
+			}
+			
+			else{
+				json=responseString;
+			}
 			System.out.println(response.getStatusLine());
 			if (response.getStatusLine().toString().trim().compareTo("HTTP/1.1 200 OK")!=0)
 			{
 				
-				if (response.getStatusLine().toString().trim().contains("400")==true && responseString.contains("Could not processs")==true)
+				/*if (response.getStatusLine().toString().trim().contains("400")==true && responseString.contains("Could not processs")==true)
 				{
 					ReportLogger.WriteLog(response.getStatusLine().toString());
 					ReportLogger.WriteLog("Status code is: 200" );	
@@ -173,7 +226,7 @@ public class CommonActions {
 					reportdata.put("NoOfKeys",  "7");			
 					reportdata.put("TextResponse", " ");	
 				}
-				else{
+				else{*/
 				ReportLogger.WriteLog(response.getStatusLine().toString());
 				ReportLogger.WriteLog("Status code is: " +response.getStatusLine().getStatusCode());	
 				ReportLogger.WriteLog("Status message is: " +response.getStatusLine().getReasonPhrase());
@@ -181,36 +234,40 @@ public class CommonActions {
 				reportdata.put("Responsecode",  response.getStatusLine().getStatusCode());
 				reportdata.put("ResponseMsg",  response.getStatusLine().getReasonPhrase());
 				reportdata.put("NoOfKeys",  "error");			
-				reportdata.put("TextResponse", responseString);	}
-				if (url.contains("obscuro"))
-				{
-					reportdata.put("Environment", "Obscuro");
-				}
-				else if ((url.contains("voldemort")))
-				{
-					reportdata.put("Environment", "voldemort");
-				}
-				
-				else if ((url.contains("avis")))
-				{
-					reportdata.put("Environment", "avis");
-				}
+				reportdata.put("TextResponse", responseString);	
+				reportdata.put("Result", "Failed");
+				reportdata.put("Remark", "Status Code returned is "+response.getStatusLine().getStatusCode());
 				
 				
-				//Google_Sheets_Report.gdataput(reportdata);
+				//}
+				
+				JsonAPI_data.put("API",reportdata.get("API"));
+				JsonAPI_data.put("State",reportdata.get("State"));
+				JsonAPI_data.put("Environment",reportdata.get("Environment"));
+				JsonAPI_data.put("Responsecode",reportdata.get("Responsecode"));
+				JsonAPI_data.put("ResponseTime",reportdata.get("ResponseTime"));
+				JsonAPI_data.put("ResponseMsg",reportdata.get("ResponseMsg"));
+				JsonAPI_data.put("Header",reportdata.get("Header"));
+				JsonAPI_data.put("NoOfKeys",reportdata.get("NoOfKeys"));
+				JsonAPI_data.put("TextResponse", json);
+				JsonAPI_data.put("DateRunOn",reportdata.get("DateRunOn"));
+				JsonAPI_data.put("TimeRunOn", reportdata.get("TimeRunOn"));
+				JsonAPI_data.put("Result", reportdata.get("Result"));
+				JsonAPI_data.put("Remark", reportdata.get("Remark"));
+				
+				//API_method.put(methodname.toString(), JsonAPI_data);
+				API_method.put(methodname.toString(), reportdata);
+				API_url.put(url, API_method);
+				
 				throw new Exception();
+								
+				//Google_Sheets_Report.gdataput(reportdata);
+				
 			}
 			else{
 			System.out.println(responseString);
 			try{
-			if(responseString.startsWith("[") && responseString.endsWith("]"))
-			{
-				json=converStringtoJson(responseString);
-			}
 			
-			else{
-				json=responseString;
-			}
 			jobject = new JSONObject(json);
 			reportdata.put("NoOfKeys",  jobject.length());
 			}
@@ -218,33 +275,58 @@ public class CommonActions {
 			{
 				
 			}
+			
 			ReportLogger.WriteLog("Status code is: " +response.getStatusLine().getStatusCode());	
 			ReportLogger.WriteLog("Status message is: " +response.getStatusLine().getReasonPhrase());
 			reportdata.put("Responsecode",  response.getStatusLine().getStatusCode());
 			reportdata.put("ResponseMsg",  response.getStatusLine().getReasonPhrase());						
 			reportdata.put("TextResponse", responseString);	
+			reportdata.put("Result", "Pass");
+			reportdata.put("Remark", "Pass");
 			
-			if (url.contains("obscuro"))
-			{
-				reportdata.put("Environment", "Obscuro");
-			}
-			else if ((url.contains("voldemort")))
-			{
-				reportdata.put("Environment", "voldemort");
-			}
+			//JsonAPI_data.put("SrNo",reportdata.get("SrNo"));
+			JsonAPI_data.put("API",reportdata.get("API"));
+			JsonAPI_data.put("State",reportdata.get("State"));
+			JsonAPI_data.put("Environment",reportdata.get("Environment"));
+			JsonAPI_data.put("Responsecode",reportdata.get("Responsecode"));
+			JsonAPI_data.put("ResponseTime",reportdata.get("ResponseTime"));
+			JsonAPI_data.put("ResponseMsg",reportdata.get("ResponseMsg"));
+			JsonAPI_data.put("Header",reportdata.get("Header"));
+			JsonAPI_data.put("NoOfKeys",reportdata.get("NoOfKeys"));
+			JsonAPI_data.put("TextResponse", json);
+			JsonAPI_data.put("DateRunOn",reportdata.get("DateRunOn"));
+			JsonAPI_data.put("TimeRunOn", reportdata.get("TimeRunOn"));
+			JsonAPI_data.put("Result", reportdata.get("Result"));
+			JsonAPI_data.put("Remark", reportdata.get("Remark"));
 			
-			else if ((url.contains("avis")))
-			{
-				reportdata.put("Environment", "avis");
-			}
-			
+			//API_method.put(methodname.toString(), JsonAPI_data);
+			API_method.put(methodname.toString(), reportdata);
+			API_url.put(url, API_method);
+			System.out.println(API_url);
 			}	
+			
+			if((reportdata.get("Result").toString()).trim().compareTo("Pass")==0)
+			{
+				compareResponseTime();
+			}
+						
 			Google_Sheets_Report.gdataput(reportdata);
+			Database_Reporting.ddataput(reportdata);
+			ReportJson.WriteLog(API_url);
+			if((reportdata.get("Result").toString()).trim().compareTo("Pass")!=0)
+			{
+				ReportLogger.WriteLog("Failed");
+				ReportLogger.WriteLog(reportdata.get("Remark").toString());
+				
+			}
 		return jobject;
 		}
 		catch(Exception e)
 		{
+			System.out.println(e);
 			Google_Sheets_Report.gdataput(reportdata);
+			Database_Reporting.ddataput(reportdata);
+			ReportJson.WriteLog(API_url);
 		return jobject;
 		}
 		
@@ -266,14 +348,10 @@ public class CommonActions {
 	
 	public static void countKeysresponse(JSONObject dataObj) throws Exception
 	{
-		int counter=1;
-		int x = dataObj.length();
-		Iterator<?> keys = dataObj.keys();
-		//while(keys.hasNext())
-		//{
-			//counter = counter+1;
-		//}
-		ReportLogger.WriteLog("Number of keys in response: "+x);
+		if(dataObj!=null)
+		{		
+		ReportLogger.WriteLog("Number of keys in response: "+reportdata.get("NoOfKeys"));
+		}
 		
 		
 	}
@@ -289,6 +367,7 @@ public class CommonActions {
 	
 	public static void checkResponseDataFormat() throws Exception
 	{
+		if(jobject!=null){
 		if (jobject.toString().startsWith("{"))
 		{
 			ReportLogger.WriteLog("Response data format: JSON");
@@ -297,10 +376,12 @@ public class CommonActions {
 		{
 			ReportLogger.WriteLog("Response data format: Arrey");
 		}
+		}
 	}
 	
 	public static void checkResponseHeaderFormat() throws Exception
 	{
+		if(response!=null){
 		if (response.toString().startsWith("{"))
 		{
 			ReportLogger.WriteLog("Response header format: JSON");
@@ -315,6 +396,7 @@ public class CommonActions {
 		}
 		else{
 			ReportLogger.WriteLog("Response data header: Text");
+		}
 		}
 	}
 	
@@ -487,7 +569,37 @@ public static void ValidateResponseData(JSONObject dataObj,  Map<String, Object>
 		    ReportLogger.WriteLog("Check Passes");
 		  }  
 		  
-		
+		public static void compareResponseTime() throws Exception
+		{
+			Class.forName("com.mysql.jdbc.Driver");
+			
+			//Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/test","root","admin");
+			//user below for production
+			Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/testing","reliability","admin");
+			Statement stmt=con.createStatement();  
+			
+			ResultSet rs=stmt.executeQuery("select * from expected where url='"+reportdata.get("API").toString()+"'");  
+			rs.next();
+			//System.out.println(rs.getString("responsetime"));
+			try{
+			if(Long.parseLong(reportdata.get("ResponseTime").toString()) < Long.parseLong(rs.getString("responsetime")))
+			{
+				reportdata.put("Result", "Pass");
+				reportdata.put("Remark", "Pass");
+			}
+			else
+			{
+				reportdata.put("Result", "Failed");
+				reportdata.put("Remark", "Expected Response time in ms is :"+rs.getLong("responsetime")+" Actual is "+reportdata.get("ResponseTime"));
+				
+				
+			}
+			}
+			catch(Exception e)
+			{
+				System.out.println(e);
+			}
+		}
 	
 	
 			

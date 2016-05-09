@@ -57,7 +57,8 @@ class MyFormatter extends Formatter {
 			Date date = new Date();
 			String filename = date.toString();
 			filename = filename.replace(":","-");
-			String filepath = "D:\\Automation Logs\\"+"API"+filename+".log";
+			String filepath = "AutomationLogs\\"+"API"+filename+".log";
+			//String filepath = "D:\\Automation Logs\\"+"API"+filename+".log";
 	    	fh = new FileHandler(filepath.trim());  
 	        logger.addHandler(fh);
 	        MyFormatter formatter = new MyFormatter();  

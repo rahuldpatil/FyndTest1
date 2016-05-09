@@ -148,7 +148,8 @@ public class APItests extends CommonActions {
 	
 	public static void edit_discount()
 	{ 
-	  try { saperator();jobject =execute("http://cc-staging.gofynd.com/api/edit-discount/","POST",APIdata.edit_discount_data().get(0),APIdata.edit_discount_data().get(1));
+	  try { saperator();
+	  jobject =execute("http://cc-staging.gofynd.com/api/edit-discount/","POST",APIdata.edit_discount_data().get(0),APIdata.edit_discount_data().get(1));
 	countKeysresponse(jobject);
 	  countHeaders();
 	checkResponseDataFormat(); 
@@ -322,6 +323,7 @@ public class APItests extends CommonActions {
 		jobject =execute("http://cc-staging.gofynd.com/api/login","POST",APIdata.headers, APIdata.keyval);
 		essentialHeaders=jobject;
 	countKeysresponse(jobject);
+	//compareResponseTime();
 	  countHeaders();
 	checkResponseDataFormat(); 
 	checkResponseHeaderFormat();
@@ -792,12 +794,14 @@ public class APItests extends CommonActions {
 	}
 	public static void bulk_download_items()
 	{ 
-	  try { saperator();jobject =execute("http://cc-staging.gofynd.com/api/bulk-download-items","POST",APIdata.bulk_download_items_data().get(0),APIdata.bulk_download_items_data().get(1));
-	countKeysresponse(jobject);
-	  countHeaders();
-	checkResponseDataFormat(); 
-	checkResponseHeaderFormat();
-	saperator();}   
+	  try { 
+		  saperator();
+		  jobject =execute("http://cc-staging.gofynd.com/api/bulk-download-items","POST",APIdata.bulk_download_items_data().get(0),APIdata.bulk_download_items_data().get(1));
+		  countKeysresponse(jobject);
+		  countHeaders();
+		  checkResponseDataFormat(); 
+		  checkResponseHeaderFormat();
+		  saperator();}   
 	catch (Exception e)
 	{  
 	ReportLogger.WriteLog(e.toString()); 
@@ -832,18 +836,21 @@ public class APItests extends CommonActions {
 	 ReportLogger.WriteLog("Terminating execution..."); saperator();
 	   }
 	}
+	
 	public static void update_item_pull_to_refresh()
 	{ 
-	  try { saperator();jobject =execute("http://cc-staging.gofynd.com/api/update-item-pull-to-refresh","POST",APIdata.update_item_pull_to_refresh_data().get(0),APIdata.update_item_pull_to_refresh_data().get(1));
-	countKeysresponse(jobject);
-	  countHeaders();
-	checkResponseDataFormat(); 
-	checkResponseHeaderFormat();
-	saperator();}   
-	catch (Exception e)
-	{  
-	ReportLogger.WriteLog(e.toString()); 
-	 ReportLogger.WriteLog("Terminating execution..."); saperator();
+	  try { 
+		  saperator();
+		  jobject =execute("http://cc-staging.gofynd.com/api/update-item-pull-to-refresh","POST",APIdata.update_item_pull_to_refresh_data().get(0),APIdata.update_item_pull_to_refresh_data().get(1));
+		  countKeysresponse(jobject);
+		  countHeaders();
+		  checkResponseDataFormat(); 
+		  checkResponseHeaderFormat();
+		  saperator();}   
+	  catch (Exception e)
+	  {  
+		  ReportLogger.WriteLog(e.toString()); 
+		  ReportLogger.WriteLog("Terminating execution..."); saperator();
 	   }
 	}
 
