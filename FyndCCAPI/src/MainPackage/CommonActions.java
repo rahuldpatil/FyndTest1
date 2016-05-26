@@ -86,6 +86,7 @@ public class CommonActions {
 		reportdata.put("TextResponse","NA");
 		reportdata.put("DateRunOn","NA");
 		reportdata.put("TimeRunOn", "NA");
+		reportdata.put("Remark", "");
 	}
 	
 	
@@ -132,25 +133,49 @@ public class CommonActions {
 				reportdata.put("Environment", "stagging");
 			}
 			
-			
+			int keynum=0;
 			if(methodname.compareTo("GET")==0){
 			httpget = new HttpGet(url);
 			nameValuePairs = new ArrayList<NameValuePair>();
 			HttpParams params = httpget.getParams();
-									
-			for(String key : keyvalue.keySet()){
-				//nameValuePairs.add(new BasicNameValuePair(key.toString(),keyvalue.get(key).toString()));
-				params.setParameter(key.toString(),keyvalue.get(key).toString());
-			}
+			
 			if(apiheaders.isEmpty()==false){
 				httpget.setHeader("Authorization", "Token "+apiheaders.get("Authorization").toString());
 				if(apiheaders.size()>1){
 			for(String key : apiheaders.keySet()){
 				httpget.addHeader(key.toString(),apiheaders.get(key).toString());
 			}}}
+									
+			for(String key : keyvalue.keySet()){
+				//nameValuePairs.add(new BasicNameValuePair(key.toString(),keyvalue.get(key).toString()));
+				params.setParameter(key.toString(),keyvalue.get(key).toString());
+				
+				keynum=keynum+1;
+				httpget.setParams(params);
+				response = httpclient.execute(httpget);
+				if (response.getStatusLine().toString().trim().compareTo("HTTP/1.1 200 OK")!=0)
+				{
+					//httppost.abort();
+					httpget.releaseConnection();
+					
+					//HttpEntity entity = httppost.getEntity();
+					//EntityUtils.consume(entity);
+					continue;
+				}
+				else if(keynum<keyvalue.size()){
+					
+					reportdata.put("Remark","Not All Body keys required for this API to be executed, only "+keynum+" are enough \n");
+					httpget.releaseConnection();
+					//HttpEntity entity = httppost.getEntity();
+					//EntityUtils.consume(entity);
+					break;
+				}
+				httpget.releaseConnection();
+			}
+			
 						
 			// Execute HTTP get Request
-			httpget.setParams(params);
+			
 			System.out.print(httpget.getParams().toString());
 			startTime = System.currentTimeMillis();
 			response = httpclient.execute(httpget);
@@ -165,11 +190,8 @@ public class CommonActions {
 				{
 			httppost = new HttpPost(url);
 			nameValuePairs = new ArrayList<NameValuePair>();
-			for(String key : keyvalue.keySet()){
-				nameValuePairs.add(new BasicNameValuePair(key.toString(),(String)keyvalue.get(key)));
-			}
 			
-			httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+			
 			
 			if(apiheaders.isEmpty()==false){
 				
@@ -178,6 +200,34 @@ public class CommonActions {
 			for(String key : apiheaders.keySet()){
 				httppost.addHeader(key.toString(),keyvalue.get(key).toString().trim());
 			}}}
+			
+			for(String key : keyvalue.keySet()){
+				nameValuePairs.add(new BasicNameValuePair(key.toString(),(String)keyvalue.get(key)));
+				keynum=keynum+1;
+				httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+				response = httpclient.execute(httppost);
+				if (response.getStatusLine().toString().trim().compareTo("HTTP/1.1 200 OK")!=0)
+				{
+					//httppost.abort();
+					httppost.releaseConnection();
+					
+					//HttpEntity entity = httppost.getEntity();
+					//EntityUtils.consume(entity);
+					continue;
+				}
+				else if(keynum<keyvalue.size()){
+					
+					reportdata.put("Remark","Not All Body keys required for this API to be executed, only "+keynum+" are enough \n");
+					httppost.releaseConnection();
+					//HttpEntity entity = httppost.getEntity();
+					//EntityUtils.consume(entity);
+					break;
+				}
+				httppost.releaseConnection();
+				
+			}
+			
+			
 			
 			// Execute HTTP Post Request
 			startTime = System.currentTimeMillis();
@@ -236,7 +286,7 @@ public class CommonActions {
 				reportdata.put("NoOfKeys",  "error");			
 				reportdata.put("TextResponse", responseString);	
 				reportdata.put("Result", "Failed");
-				reportdata.put("Remark", "Status Code returned is "+response.getStatusLine().getStatusCode());
+				reportdata.put("Remark", reportdata.get("Remark")+ "\nStatus Code returned is "+response.getStatusLine().getStatusCode());
 				
 				
 				//}
@@ -282,7 +332,7 @@ public class CommonActions {
 			reportdata.put("ResponseMsg",  response.getStatusLine().getReasonPhrase());						
 			reportdata.put("TextResponse", responseString);	
 			reportdata.put("Result", "Pass");
-			reportdata.put("Remark", "Pass");
+			reportdata.put("Remark",reportdata.get("Remark")+ "\nPass");
 			
 			//JsonAPI_data.put("SrNo",reportdata.get("SrNo"));
 			JsonAPI_data.put("API",reportdata.get("API"));
@@ -585,12 +635,12 @@ public static void ValidateResponseData(JSONObject dataObj,  Map<String, Object>
 			if(Long.parseLong(reportdata.get("ResponseTime").toString()) < Long.parseLong(rs.getString("responsetime")))
 			{
 				reportdata.put("Result", "Pass");
-				reportdata.put("Remark", "Pass");
+				reportdata.put("Remark", reportdata.get("Remark")+ "\nPass");
 			}
 			else
 			{
 				reportdata.put("Result", "Failed");
-				reportdata.put("Remark", "Expected Response time in ms is :"+rs.getLong("responsetime")+" Actual is "+reportdata.get("ResponseTime"));
+				reportdata.put("Remark", reportdata.get("Remark")+ "\nExpected Response time in ms is :"+rs.getLong("responsetime")+" Actual is "+reportdata.get("ResponseTime"));
 				
 				
 			}

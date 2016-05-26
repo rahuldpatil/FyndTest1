@@ -25,8 +25,9 @@ public class APIdata {
 public static List<HashMap> loginAPIdata() throws Exception {
 		 
 		 clearmaps();
-		 keyval.put("username", "productallapitest");
-		 keyval.put("password", "apitest");
+		 keyval.put("username", "rajnikant");
+		 keyval.put("password", "TheSuperUserRajnikant");
+		 
 		 responseDtype.put("token", "Text");
 		 responseDtype.put("username", "Text");
 		 responseData.put("id", "1");
